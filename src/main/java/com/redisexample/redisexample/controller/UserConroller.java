@@ -35,4 +35,21 @@ public class UserConroller {
     public boolean deleteUser(@PathVariable("userId") String userId) {
         return userDao.deleteUser(userId);
     }
+
+    @PutMapping("/{userId}")
+    public User updateUser(@PathVariable("userId") String userId, @RequestBody User user) {
+        User returnUser = userDao.getUser(userId);
+
+        if(user.getName() !=null){
+            returnUser.setName(user.getName());
+        }
+        if(user.getPhoneNumber() !=null){
+            returnUser.setName(user.getPhoneNumber());
+        }
+        if(user.getEmail() !=null){
+            returnUser.setName(user.getEmail());
+        }
+        return userDao.saveUser(returnUser);
+
+    }
 }
